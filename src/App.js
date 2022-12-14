@@ -1,25 +1,37 @@
-import logo from './logo.svg';
+import Border from './Border';
+import Button from './Button';
 import './App.css';
+import { useState } from 'react';
 
-function App() {
+function App(){
+  const [myHistory,setHistory] = useState([]);
+  const [otherHistory,setOtherHistory] = useState([]);
+
+  function random(n){
+    return Math.ceil(Math.random()* n)
+  }
+  function playClick(){
+    const nextMyNum = random(6);
+    const nextOtherNum = random(6);
+    setHistory([...myHistory,nextMyNum]);
+    setOtherHistory([...otherHistory,nextOtherNum])
+  }
+  function resetClick(){
+    setHistory([]);
+    setOtherHistory([])
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="box">
+     <div id="btn">
+      <Button onClick = {playClick}>start</Button>
+      <Button onClick = {resetClick}>reset</Button>
+     </div>
+     <div id="container">
+      <Border name="A팀" color="red" gameHistory={myHistory}/>
+      <Border name="B팀" color="blue" gameHistory={otherHistory} />
+     </div>
     </div>
-  );
+  )
 }
 
 export default App;

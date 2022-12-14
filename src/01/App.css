@@ -15,10 +15,7 @@ div#btn>button{
 }
 div#container{
   text-align:center;
-  display:flex;
-  justify-content: space-evenly;
-  border:1px solid #666;
 }
-div#container img{
+div#container>img{
   width:100px;
 }
